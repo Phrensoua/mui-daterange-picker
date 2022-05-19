@@ -1,15 +1,13 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable radix */
 
-import {
-  Grid,
-  makeStyles,
-  IconButton,
-  Select,
-  MenuItem,
-} from '@material-ui/core';
 import React from 'react';
-import ChevronLeft from '@material-ui/icons/ChevronLeft';
-import ChevronRight from '@material-ui/icons/ChevronRight';
+import Grid from '@mui/material/Grid';
+import IconButton from '@mui/material/IconButton';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import {
   setMonth,
   getMonth,
@@ -17,7 +15,7 @@ import {
   getYear,
 } from 'date-fns';
 
-const useStyles = makeStyles(() => ({
+const styles = {
   iconContainer: {
     padding: 5,
   },
@@ -27,7 +25,7 @@ const useStyles = makeStyles(() => ({
       background: 'none',
     },
   },
-}));
+};
 
 interface HeaderProps {
   date: Date;
@@ -60,33 +58,31 @@ const generateYears = (relativeTo: Date, count: number) => {
     .map((_y, i) => relativeTo.getFullYear() - half + i); // TODO: make part of the state
 };
 
-const Header: React.FunctionComponent<HeaderProps> = ({
+export default function Header({
   date,
   setDate,
   nextDisabled,
   prevDisabled,
   onClickNext,
   onClickPrevious,
-}: HeaderProps) => {
-  const classes = useStyles();
-
-  const handleMonthChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setDate(setMonth(date, parseInt(event.target.value)));
+}: HeaderProps) {
+  const handleMonthChange = (event: SelectChangeEvent<number>) => {
+    setDate(setMonth(date, typeof event.target.value === 'string' ? parseInt(event.target.value) : event.target.value));
   };
 
-  const handleYearChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setDate(setYear(date, parseInt(event.target.value)));
+  const handleYearChange = (event: SelectChangeEvent<number>) => {
+    setDate(setYear(date, typeof event.target.value === 'string' ? parseInt(event.target.value) : event.target.value));
   };
 
   return (
     <Grid container justifyContent="space-between" alignItems="center">
-      <Grid item className={classes.iconContainer}>
+      <Grid item style={styles.iconContainer}>
         <IconButton
-          className={classes.icon}
+          style={styles.icon}
           disabled={prevDisabled}
           onClick={onClickPrevious}
         >
-          <ChevronLeft color={prevDisabled ? 'disabled' : 'action'} />
+          <ChevronLeftIcon color={prevDisabled ? 'disabled' : 'action'} />
         </IconButton>
       </Grid>
       <Grid item>
@@ -118,13 +114,11 @@ const Header: React.FunctionComponent<HeaderProps> = ({
 
         {/* <Typography>{format(date, "MMMM YYYY")}</Typography> */}
       </Grid>
-      <Grid item className={classes.iconContainer}>
-        <IconButton className={classes.icon} disabled={nextDisabled} onClick={onClickNext}>
-          <ChevronRight color={nextDisabled ? 'disabled' : 'action'} />
+      <Grid item style={styles.iconContainer}>
+        <IconButton style={styles.icon} disabled={nextDisabled} onClick={onClickNext}>
+          <ChevronRightIcon color={nextDisabled ? 'disabled' : 'action'} />
         </IconButton>
       </Grid>
     </Grid>
   );
-};
-
-export default Header;
+}

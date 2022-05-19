@@ -1,16 +1,15 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 
 import * as React from 'react';
-import {
-  IconButton,
-  Typography,
-  makeStyles,
-  // eslint-disable-next-line no-unused-vars
-  Theme,
-} from '@material-ui/core';
+
+import { createTheme } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
 import { combine } from '../utils';
 
-const useStyles = makeStyles((theme: Theme) => ({
+const theme = createTheme();
+const styles = {
   leftBorderRadius: {
     borderRadius: '50% 0 0 50%',
   },
@@ -43,7 +42,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   contrast: {
     color: theme.palette.primary.contrastText,
   },
-}));
+};
 
 interface DayProps {
   filled?: boolean;
@@ -57,7 +56,7 @@ interface DayProps {
   value: number | string;
 }
 
-const Day: React.FunctionComponent<DayProps> = ({
+export default function Day({
   startOfRange,
   endOfRange,
   disabled,
@@ -67,23 +66,21 @@ const Day: React.FunctionComponent<DayProps> = ({
   onClick,
   onHover,
   value,
-}: DayProps) => {
-  const classes = useStyles();
-
+}: DayProps) {
   return (
     <div
       className={combine(
-        classes.buttonContainer,
-        startOfRange && classes.leftBorderRadius,
-        endOfRange && classes.rightBorderRadius,
-        !disabled && highlighted && classes.highlighted,
+        styles.buttonContainer,
+        startOfRange && styles.leftBorderRadius,
+        endOfRange && styles.rightBorderRadius,
+        !disabled && highlighted && styles.highlighted,
       )}
     >
       <IconButton
         className={combine(
-          classes.button,
-          !disabled && outlined && classes.outlined,
-          !disabled && filled && classes.filled,
+          styles.button,
+          !disabled && outlined && styles.outlined,
+          !disabled && filled && styles.filled,
         )}
         disabled={disabled}
         onClick={onClick}
@@ -92,8 +89,8 @@ const Day: React.FunctionComponent<DayProps> = ({
         <Typography
           color={!disabled ? 'textPrimary' : 'textSecondary'}
           className={combine(
-            classes.buttonText,
-            !disabled && filled && classes.contrast,
+            styles.buttonText,
+            !disabled && filled && styles.contrast,
           )}
           variant="body2"
         >
@@ -102,6 +99,4 @@ const Day: React.FunctionComponent<DayProps> = ({
       </IconButton>
     </div>
   );
-};
-
-export default Day;
+}

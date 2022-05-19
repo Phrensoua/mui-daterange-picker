@@ -1,15 +1,15 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
 import * as React from 'react';
 import classNames from 'classnames';
-import { makeStyles } from '@material-ui/core';
 
 import DateRangePicker from './DateRangePicker';
 
 // eslint-disable-next-line no-unused-vars
 import { DateRange, DefinedRange } from '../types';
 
-const useStyles = makeStyles(() => ({
+const styles: { [key: string]: React.CSSProperties } = {
   dateRangePickerContainer: {
     position: 'relative',
   },
@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => ({
     left: 0,
     top: 0,
   },
-}));
+};
 
 export interface DateRangePickerWrapperProps {
   open: boolean;
@@ -41,11 +41,7 @@ export interface DateRangePickerWrapperProps {
   wrapperClassName?: string;
 }
 
-const DateRangePickerWrapper: React.FunctionComponent<DateRangePickerWrapperProps> = (
-  props: DateRangePickerWrapperProps,
-) => {
-  const classes = useStyles();
-
+export default function DateRangePickerWrapper(props: DateRangePickerWrapperProps) {
   const {
     closeOnClickOutside,
     wrapperClassName,
@@ -63,14 +59,14 @@ const DateRangePickerWrapper: React.FunctionComponent<DateRangePickerWrapperProp
 
   const handleKeyPress = (event: any) => event?.key === 'Escape' && handleToggle();
 
-  const wrapperClasses = classNames(classes.dateRangePicker, wrapperClassName);
+  const wrapperClasses = classNames(styles.dateRangePicker, wrapperClassName);
 
   return (
-    <div className={classes.dateRangePickerContainer}>
+    <div style={styles.dateRangePickerContainer}>
       {
         open && (
           <div
-            className={classes.dateRangeBackdrop}
+            style={styles.dateRangeBackdrop}
             onKeyPress={handleKeyPress}
             onClick={handleToggle}
           />
@@ -82,6 +78,4 @@ const DateRangePickerWrapper: React.FunctionComponent<DateRangePickerWrapperProp
       </div>
     </div>
   );
-};
-
-export default DateRangePickerWrapper;
+}

@@ -1,10 +1,7 @@
 import * as React from 'react';
-import {
-  Paper,
-  Grid,
-  Typography,
-  makeStyles,
-} from '@material-ui/core';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import {
   getDate,
   isSameMonth,
@@ -23,13 +20,12 @@ import {
 import Header from './Header';
 import Day from './Day';
 
-
 // eslint-disable-next-line no-unused-vars
 import { NavigationAction, DateRange } from '../types';
 
 const WEEK_DAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
-const useStyles = makeStyles(() => ({
+const styles = {
   root: {
     width: 290,
   },
@@ -44,7 +40,7 @@ const useStyles = makeStyles(() => ({
     marginTop: 15,
     marginBottom: 20,
   },
-}));
+};
 
 interface MonthProps {
   value: Date;
@@ -65,8 +61,6 @@ interface MonthProps {
 }
 
 const Month: React.FunctionComponent<MonthProps> = (props: MonthProps) => {
-  const classes = useStyles();
-
   const {
     helpers,
     handlers,
@@ -82,7 +76,7 @@ const Month: React.FunctionComponent<MonthProps> = (props: MonthProps) => {
   const [back, forward] = props.navState;
 
   return (
-    <Paper square elevation={0} className={classes.root}>
+    <Paper square elevation={0} style={styles.root}>
       <Grid container>
         <Header
           date={date}
@@ -98,7 +92,7 @@ const Month: React.FunctionComponent<MonthProps> = (props: MonthProps) => {
           container
           direction="row"
           justifyContent="space-between"
-          className={classes.weekDaysContainer}
+          style={styles.weekDaysContainer}
         >
           {WEEK_DAYS.map((day) => (
             <Typography color="textSecondary" key={day} variant="caption">
@@ -112,7 +106,7 @@ const Month: React.FunctionComponent<MonthProps> = (props: MonthProps) => {
           container
           direction="column"
           justifyContent="space-between"
-          className={classes.daysContainer}
+          style={styles.daysContainer}
         >
           {chunks(getDaysInMonth(date), 7).map((week, idx) => (
             // eslint-disable-next-line react/no-array-index-key

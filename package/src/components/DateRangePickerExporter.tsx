@@ -1,18 +1,24 @@
 import * as React from 'react';
-import { StylesProvider } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 // eslint-disable-next-line no-unused-vars
 import DateRangePickerWrapper, { DateRangePickerWrapperProps } from './DateRangePickerWrapper';
-import generateClassName from '../generateClassName';
+// import generateClassName from '../generateClassName';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 const DateRangePickerExporter: React.FunctionComponent<DateRangePickerWrapperProps> = (
   props: DateRangePickerWrapperProps,
 ) => (
-  <StylesProvider generateClassName={generateClassName}>
+  <ThemeProvider theme={darkTheme}>
     <DateRangePickerWrapper
       {...props}
     />
-  </StylesProvider>
+  </ThemeProvider>
 );
 
 export default DateRangePickerExporter;

@@ -1,5 +1,7 @@
 import React from 'react';
-import { List, ListItem, ListItemText } from '@material-ui/core';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 import { isSameDay } from 'date-fns';
 
 // eslint-disable-next-line no-unused-vars
