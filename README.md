@@ -6,6 +6,10 @@ a react date range picker implementation using @mui v5+
 
 A spinoff of https://github.com/jungsoft/materialui-daterange-picker
 
+## Preview
+
+![Screenshot](/screenshot.png?raw=true "Screenshot")
+
 ## Usage
 
 ```bash
