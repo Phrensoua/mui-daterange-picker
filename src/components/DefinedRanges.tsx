@@ -3,8 +3,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { isSameDay } from 'date-fns';
-
-// eslint-disable-next-line no-unused-vars
+//
 import { DefinedRange, DateRange } from '../types';
 
 type DefinedRangesProps = {
@@ -22,14 +21,13 @@ const isSameRange = (first: DateRange, second: DateRange) => {
   return false;
 };
 
-const DefinedRanges: React.FunctionComponent<DefinedRangesProps> = ({
+export default function DefinedRanges({
   ranges,
   setRange,
   selectedRange,
-}: DefinedRangesProps) => (
-  <List>
+}: DefinedRangesProps) {
+  return <List>
     {ranges.map((range, idx) => (
-      // eslint-disable-next-line react/no-array-index-key
       <ListItem button key={idx} onClick={() => setRange(range)}>
         <ListItemText
           primaryTypographyProps={{
@@ -46,6 +44,4 @@ const DefinedRanges: React.FunctionComponent<DefinedRangesProps> = ({
       </ListItem>
     ))}
   </List>
-);
-
-export default DefinedRanges;
+}

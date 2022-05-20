@@ -1,32 +1,22 @@
 # Material UI DateRange Picker
 
-A react date range picker implementation using @material-ui.
+a react date range picker implementation using @mui v5+
 
-<a href='https://www.npmjs.com/package/materialui-daterange-picker'>
-    <img src='https://img.shields.io/npm/v/materialui-daterange-picker.svg' alt='Latest npm version'>
-</a>
-
-## Preview
-
-![Screenshot](/screenshot.png?raw=true "Screenshot")
-
-## Live Demo
-
-Check out the project running [here](https://codesandbox.io/s/materialui-daterange-picker-2p3f1?file=/src/App.js)!
+A spinoff of https://github.com/jungsoft/materialui-daterange-picker
 
 ## Usage
 
 ```bash
-npm install materialui-daterange-picker --save
+npm install mui-daterange-picker --save
 
 # or with yarn
-yarn add materialui-daterange-picker
+yarn add mui-daterange-picker
 ```
 
 ## Basic example
 ```tsx
-import React from "react";
-import { DateRangePicker, DateRange } from "materialui-daterange-picker";
+import React from 'react';
+import { DateRangePicker, DateRange } from 'mui-daterange-picker';
 
 type Props = {}
 
@@ -73,10 +63,3 @@ Name | Type | Required | Default value | Description
 `maxDate` | `Date` or `string` | _optional_ | 10 years from now | max date allowed in range
 `definedRanges` | `DefinedRange[]` | _optional_ | - | custom defined ranges to show in the list
 `closeOnClickOutside` | `boolean` | _optional_ | `true` | defines if DateRangePicker will be closed when clicking outside of it
-`wrapperClassName` | `object` | _optional_ | `undefined` | defines additional wrapper style classes
-
-## Made possible by
-
-<a href="https://github.com/jungsoft/materialui-daterange-picker/graphs/contributors">
-  <img src="https://contributors-img.web.app/image?repo=jungsoft/materialui-daterange-picker" />
-</a>

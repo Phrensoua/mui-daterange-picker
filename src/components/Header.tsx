@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable radix */
-
 import React from 'react';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
@@ -8,12 +5,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import {
-  setMonth,
-  getMonth,
-  setYear,
-  getYear,
-} from 'date-fns';
+import { setMonth, getMonth, setYear, getYear } from 'date-fns';
 
 const styles = {
   iconContainer: {
@@ -74,51 +66,49 @@ export default function Header({
     setDate(setYear(date, typeof event.target.value === 'string' ? parseInt(event.target.value) : event.target.value));
   };
 
-  return (
-    <Grid container justifyContent="space-between" alignItems="center">
-      <Grid item style={styles.iconContainer}>
-        <IconButton
-          style={styles.icon}
-          disabled={prevDisabled}
-          onClick={onClickPrevious}
-        >
-          <ChevronLeftIcon color={prevDisabled ? 'disabled' : 'action'} />
-        </IconButton>
-      </Grid>
-      <Grid item>
-        <Select
-          value={getMonth(date)}
-          onChange={handleMonthChange}
-          MenuProps={{ disablePortal: true }}
-        >
-          {MONTHS.map((month, idx) => (
-            <MenuItem key={month} value={idx}>
-              {month}
-            </MenuItem>
-          ))}
-        </Select>
-      </Grid>
-
-      <Grid item>
-        <Select
-          value={getYear(date)}
-          onChange={handleYearChange}
-          MenuProps={{ disablePortal: true }}
-        >
-          {generateYears(date, 30).map((year) => (
-            <MenuItem key={year} value={year}>
-              {year}
-            </MenuItem>
-          ))}
-        </Select>
-
-        {/* <Typography>{format(date, "MMMM YYYY")}</Typography> */}
-      </Grid>
-      <Grid item style={styles.iconContainer}>
-        <IconButton style={styles.icon} disabled={nextDisabled} onClick={onClickNext}>
-          <ChevronRightIcon color={nextDisabled ? 'disabled' : 'action'} />
-        </IconButton>
-      </Grid>
+  return <Grid container justifyContent='space-between' alignItems='center'>
+    <Grid item style={styles.iconContainer}>
+      <IconButton
+        style={styles.icon}
+        disabled={prevDisabled}
+        onClick={onClickPrevious}
+      >
+        <ChevronLeftIcon color={prevDisabled ? 'disabled' : 'action'} />
+      </IconButton>
     </Grid>
-  );
+    <Grid item>
+      <Select
+        value={getMonth(date)}
+        onChange={handleMonthChange}
+        MenuProps={{ disablePortal: true }}
+      >
+        {MONTHS.map((month, idx) => (
+          <MenuItem key={month} value={idx}>
+            {month}
+          </MenuItem>
+        ))}
+      </Select>
+    </Grid>
+
+    <Grid item>
+      <Select
+        value={getYear(date)}
+        onChange={handleYearChange}
+        MenuProps={{ disablePortal: true }}
+      >
+        {generateYears(date, 30).map((year) => (
+          <MenuItem key={year} value={year}>
+            {year}
+          </MenuItem>
+        ))}
+      </Select>
+
+      {/* <Typography>{format(date, 'MMMM YYYY')}</Typography> */}
+    </Grid>
+    <Grid item style={styles.iconContainer}>
+      <IconButton style={styles.icon} disabled={nextDisabled} onClick={onClickNext}>
+        <ChevronRightIcon color={nextDisabled ? 'disabled' : 'action'} />
+      </IconButton>
+    </Grid>
+  </Grid>
 }
