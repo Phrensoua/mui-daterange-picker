@@ -1,5 +1,7 @@
 # Material UI DateRange Picker
 
+*** WIP: NOT YET READY FOR NPM. WANNA HELP? I'M REALLY BUSY!! :) ***
+
 a react date range picker implementation using @mui v5+
 
 A spinoff of https://github.com/jungsoft/materialui-daterange-picker
